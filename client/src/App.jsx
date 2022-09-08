@@ -11,19 +11,37 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentFoodItem: ''
+      currentFoodItems: [],
+      randomFoodItem: ''
     }
     this.addFoodItem = this.addFoodItem.bind(this);
     this.getRandomFoodItem = this.getRandomFoodItem.bind(this);
   }
 
 
-  addFoodItem() {
+  addFoodItem(item) {
     // ajax post req to DB
+    console.log('Trying to add item...')
+    $.ajax({
+      type: 'POST',
+      url: '/meals',
+      data: {
+        foodItem: item
+      },
+      success: function(err) {
+        console.log(`${item} - added to your list!`)
+      }
+    });
   }
 
   getRandomFoodItem() {
-
+    $.ajax({
+      type: 'GET',
+      url: '/meals',
+      success: function(data) {
+        console.log('GET SUCCESS')
+      }
+    })
   }
 
   render () {
@@ -33,8 +51,10 @@ class App extends React.Component {
           <h1>
             Random food recommendation system.
           </h1>
-          <Recommend onClick={this.getRandomFoodItem.bind(this)} />
-          <List onClick={this.addFoodItem.bind(this)} foodItem={this.state.currentFoodItem}/>
+          {/* <Recommend onClick={this.getRandomFoodItem.bind(this)} /> */}
+          <button onClick={this.getRandomFoodItem}>What should I eat tonight?</button>
+          <p>{this.state.randomFoodItem}</p>
+          <List onClick={this.addFoodItem.bind(this)} />
         </header>
       </div>
     );

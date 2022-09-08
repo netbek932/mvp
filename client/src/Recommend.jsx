@@ -21,9 +21,9 @@ import React from 'react';
 // }
 
 const Recommend = (props) => {
-  return <div>
-    <h2> What should I eat tonight?</h2>
+  <div>
 
+    <button onClick={this.props.onClick}>What should I eat tonight?</button>
   </div>
 }
 

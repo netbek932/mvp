@@ -6,24 +6,25 @@ class List extends React.Component {
     this.state = {
       item: ''
     }
+    this.handleChange = this.handleChange.bind(this);
+    this.add = this.add.bind(this);
   }
 
   handleChange(e) {
     this.setState({item: e.target.value});
   }
 
+  add() {
+    this.props.onClick(this.state.item);
+  }
 
   render () {
     return (<div>
-      <form onSubmit={this.props.onClick(this.state.item)}>
-      <label>
         Add a food item to your list:
         <div>
-        <input type="text" />
-        <input type="submit" value="Submit" onChange={this.handleChange.bind(this)}/>
+        <input type="text" onChange={this.handleChange}/>
+        <button type="submit" onClick={this.add}>Submit</button>
         </div>
-      </label>
-      </form>
     </div>)
   }
 }
