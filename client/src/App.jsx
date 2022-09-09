@@ -3,15 +3,16 @@ import ReactDOM from 'react-dom/client';
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import $ from 'jquery';
-import List from './List.jsx'
-import Recommend from './Recommend.jsx'
+import List from './List.jsx';
+import './styles.css';
+//import Recommend from './Recommend.jsx'
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentFoodItems: [],
+      //currentFoodItems: [],
       randomFoodItem: ''
     }
     this.addFoodItem = this.addFoodItem.bind(this);
@@ -44,17 +45,26 @@ class App extends React.Component {
     })
   }
 
+  getList() {
+
+  }
+
   render () {
     return (
       <div className="App">
         <header className="App-header">
           <h1>
-            Random food recommendation system.
+            Random food recommendation system
           </h1>
-          {/* <Recommend onClick={this.getRandomFoodItem.bind(this)} /> */}
-          <button onClick={this.getRandomFoodItem}>What should I eat tonight?</button>
-          <p>{this.state.randomFoodItem}</p>
-          <List onClick={this.addFoodItem.bind(this)} />
+
+          <div className="getSuggestion">
+            <button onClick={this.getRandomFoodItem}>What should I eat tonight?</button>
+            <p>{this.state.randomFoodItem}</p>
+          </div>
+
+          <div className="List" >
+            <List onClick={this.addFoodItem.bind(this)} />
+          </div>
         </header>
       </div>
     );

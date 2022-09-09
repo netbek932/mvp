@@ -20,12 +20,21 @@ class List extends React.Component {
     this.props.onClick(this.state.item);
   }
 
+  get() {
+
+  }
+
   render () {
     return (<div>
+      <div>
         Add a food item to your list:
-        <div>
         <input type="text" onChange={this.handleChange}/>
         <button type="submit" onClick={this.add}>Submit</button>
+        </div>
+
+        <div>
+          Click to see list of saved food choices.
+          <button type="submit" onClick={this.get} >List</button>
         </div>
     </div>)
   }
