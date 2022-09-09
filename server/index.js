@@ -13,7 +13,13 @@ app.post('/meals', function(req, res) {
 })
 
 app.get('/meals', function(req, res) {
-
+  getRandom()
+  .then((result) => {
+    console.log('here is your random food:', result.meal);
+    res.send(result.meal);
+  })
+  .catch((err) => {
+    console.log('Error getting a random food suggestion')})
 })
 
 let port = 3000;

@@ -38,9 +38,9 @@ class App extends React.Component {
     $.ajax({
       type: 'GET',
       url: '/meals',
-      success: function(data) {
-        console.log('GET SUCCESS')
-      }
+    })
+    .then((data) => {
+      this.setState({randomFoodItem: data})
     })
   }
 

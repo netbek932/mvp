@@ -20,7 +20,6 @@ const save = (item) => {
     //_id: { type: Meal.ObjectId, auto: true },
     meal: item
   })
-  console.log(newMeal)
   newMeal.save()
   .then(result => console.log('Successfully saved meal item to the DB!'))
   .catch((err) => {
@@ -29,17 +28,16 @@ const save = (item) => {
   })
 }
 
-const getRandom = () => {
-  console.log('inside getrandom')
-  Meal.count().exec(function (err, count) {
-    var random = Math.floor(Math.random() * count);
-    Meal.findOne().skip(random).exec(
-      function (err, result) {
-        console.log(result);
+const getRandom = function() {
+    return Meal.count()
+    .then((count) => {
+      var random = Math.floor(Math.random() * count)
+      return Meal.findOne().skip(random)
+      .then((result) => {
         return result;
-      }
-    )
-  })
+      })
+    })
+    .catch(err => console.log('err'))
 }
 
 module.exports.save = save;

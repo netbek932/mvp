@@ -11,10 +11,12 @@ class List extends React.Component {
   }
 
   handleChange(e) {
+    e.preventDefault();
     this.setState({item: e.target.value});
+
   }
 
-  add() {
+  add(e) {
     this.props.onClick(this.state.item);
   }
 
