@@ -7,8 +7,18 @@
 
 .getSuggestion {
   padding-bottom: 40px;
+  float: left;
+  padding-right: 200px;
 }
 
 .List {
-  padding-top: 200px;
+  display: inline-block;
+}
+
+.addItem {
+  padding-bottom: 20px;
+}
+
+#menu li {
+  list-style-type: none;
 }

@@ -8,6 +8,7 @@ class List extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.add = this.add.bind(this);
+    this.get = this.get.bind(this);
   }
 
   handleChange(e) {
@@ -21,12 +22,12 @@ class List extends React.Component {
   }
 
   get() {
-
+    this.props.onClickList();
   }
 
   render () {
     return (<div>
-      <div>
+      <div className="addItem">
         Add a food item to your list:
         <input type="text" onChange={this.handleChange}/>
         <button type="submit" onClick={this.add}>Submit</button>
@@ -35,6 +36,7 @@ class List extends React.Component {
         <div>
           Click to see list of saved food choices.
           <button type="submit" onClick={this.get} >List</button>
+          <ul id="menu">{this.props.foodList.map((item) => <li key={item._id}>{item.meal}</li>)}</ul>
         </div>
     </div>)
   }

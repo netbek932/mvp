@@ -5,18 +5,18 @@ import { createRoot } from "react-dom/client";
 import $ from 'jquery';
 import List from './List.jsx';
 import './styles.css';
-//import Recommend from './Recommend.jsx'
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      //currentFoodItems: [],
+      userList: [],
       randomFoodItem: ''
     }
     this.addFoodItem = this.addFoodItem.bind(this);
     this.getRandomFoodItem = this.getRandomFoodItem.bind(this);
+    this.getList = this.getList.bind(this);
   }
 
 
@@ -46,13 +46,18 @@ class App extends React.Component {
   }
 
   getList() {
-
+    $.ajax({
+      type: 'GET',
+      url: '/user/:meals',
+    })
+    .then((data) => {
+      this.setState({userList: data})
+    })
   }
 
   render () {
     return (
       <div className="App">
-        <header className="App-header">
           <h1>
             Random food recommendation system
           </h1>
@@ -63,9 +68,9 @@ class App extends React.Component {
           </div>
 
           <div className="List" >
-            <List onClick={this.addFoodItem.bind(this)} />
+            <List onClick={this.addFoodItem.bind(this)} onClickList={this.getList.bind(this)} foodList={this.state.userList}/>
           </div>
-        </header>
+
       </div>
     );
   }

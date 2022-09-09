@@ -40,5 +40,13 @@ const getRandom = function() {
     .catch(err => console.log('err'))
 }
 
+const getAll = function() {
+  return Meal.find({})
+  .then((all) => {
+    return all;
+  })
+}
+
 module.exports.save = save;
 module.exports.getRandom = getRandom;
+module.exports.getAll = getAll;
