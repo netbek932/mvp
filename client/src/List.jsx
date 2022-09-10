@@ -36,7 +36,7 @@ class List extends React.Component {
         <div>
           Click to see list of saved food choices.
           <button type="submit" onClick={this.get} >List</button>
-          <ul id="menu">{this.props.foodList.map((item) => <li key={item._id}>{item.meal}</li>)}</ul>
+          <ul id="menu">{this.props.foodList.map((item) => <li key={item._id} >{item.meal}</li>)}</ul>
         </div>
     </div>)
   }

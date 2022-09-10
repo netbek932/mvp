@@ -17,12 +17,11 @@ class App extends React.Component {
     this.addFoodItem = this.addFoodItem.bind(this);
     this.getRandomFoodItem = this.getRandomFoodItem.bind(this);
     this.getList = this.getList.bind(this);
+
   }
 
-
   addFoodItem(item) {
-    // ajax post req to DB
-    console.log('Trying to add item...')
+    console.log('Adding item...')
     $.ajax({
       type: 'POST',
       url: '/meals',
