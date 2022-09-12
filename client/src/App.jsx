@@ -17,7 +17,7 @@ class App extends React.Component {
     this.addFoodItem = this.addFoodItem.bind(this);
     this.getRandomFoodItem = this.getRandomFoodItem.bind(this);
     this.getList = this.getList.bind(this);
-
+    this.deleteFoodItem = this.deleteFoodItem.bind(this);
   }
 
   addFoodItem(item) {
@@ -30,6 +30,20 @@ class App extends React.Component {
       },
       success: function(err) {
         console.log(`${item} - added to your list!`)
+      }
+    });
+  }
+
+  deleteFoodItem(item) {
+    console.log(item)
+    $.ajax({
+      type: 'POST',
+      url: '/user/:meals',
+      data: {
+        foodItem: item
+      },
+      success: function(err) {
+        console.log(`${item} - deleted from your list!`)
       }
     });
   }
@@ -58,7 +72,7 @@ class App extends React.Component {
     return (
       <div className="App">
           <h1>
-            Random food recommendation system
+            Welcome to random food recommendation!
           </h1>
 
           <div className="getSuggestion">
@@ -67,7 +81,7 @@ class App extends React.Component {
           </div>
 
           <div className="List" >
-            <List onClick={this.addFoodItem.bind(this)} onClickList={this.getList.bind(this)} foodList={this.state.userList}/>
+            <List onClick={this.addFoodItem.bind(this)} onClickList={this.getList.bind(this)} foodList={this.state.userList} delete={this.deleteFoodItem.bind(this)}/>
           </div>
 
       </div>
@@ -77,10 +91,3 @@ class App extends React.Component {
 
 export default App;
 
-// const root = ReactDOM.createRoot(document.getElementById('app'));
-// root.render(
-//   <StrictMode>
-//   <App />
-//   </StrictMode>
-// );
-//ReactDOM.render(<App />, document.getElementById('app'));
